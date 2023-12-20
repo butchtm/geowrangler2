@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "geowrangler2"
+  site-url: "https://butchtm.github.io/geowrangler2"
+  description: "Next gen version of geowrangler"
+  repo-branch: main
+  repo-url: "https://github.com/butchtm/geowrangler2"
