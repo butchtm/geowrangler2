@@ -736,32 +736,32 @@ def test_create_bingtile_zonal_stats(simple_aoi_bingtiles, simple_data):
         simple_data_quadkey,
         aggregations=[dict(func="count", fillna=True)],
     )
-
-    assert list(bingtile_results.quadkey.values) == [
-        "122222220",
-        "122222222",
-        "122222221",
-        "122222223",
-        "122222230",
-        "122222232",
-        "122222231",
-        "122222233",
-        "122222320",
-        "122222322",
+    quadkey_results = list(bingtile_results.quadkey.values)
+    assert len(quadkey_results) == 10
+    assert quadkey_results == [
+        '122222220', 
+        '122222221', 
+        '122222230', 
+        '122222231', 
+        '122222320', 
+        '122222222', 
+        '122222223', 
+        '122222232', 
+        '122222233', 
+        '122222322'
     ]
-
-    assert list(bingtile_results.index_count.values) == [
-        0.0,
-        3.0,
-        0.0,
-        0.0,
-        0.0,
-        3.0,
-        0.0,
-        3.0,
-        0.0,
-        0.0,
-    ]
+    index_count_results = list(bingtile_results.index_count.values) 
+    assert index_count_results == [
+        0.0, 
+        0.0, 
+        0.0, 
+        0.0, 
+        0.0, 
+        3.0, 
+        0.0, 
+        3.0, 
+        3.0, 
+        0.0]
 
 
 def test_create_bingtile_zonal_stats2(simple_aoi, simple_data):
