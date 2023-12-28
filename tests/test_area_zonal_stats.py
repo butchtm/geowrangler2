@@ -3,8 +3,8 @@ import pandas as pd
 import pytest
 from shapely.geometry import Polygon
 
-import geowrangler.vector_zonal_stats as vzs
-from geowrangler.area_zonal_stats import (
+import geowrangler2.vector_zonal_stats as vzs
+from geowrangler2.area_zonal_stats import (
     GEO_INDEX_NAME,
     build_agg_area_dicts,
     compute_imputed_stats,

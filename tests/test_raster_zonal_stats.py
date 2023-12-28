@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from shapely.geometry import Polygon
 
-import geowrangler.raster_zonal_stats as rzs
+import geowrangler2.raster_zonal_stats as rzs
 
 
 @pytest.fixture()

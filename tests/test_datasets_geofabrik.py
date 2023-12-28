@@ -5,7 +5,7 @@ from urllib.error import HTTPError
 import pytest
 import requests
 
-from geowrangler.datasets import geofabrik
+from geowrangler2.datasets import geofabrik
 
 
 @pytest.fixture
@@ -163,7 +163,7 @@ def test_download_osm_region_data(mock_geofabrike_req, mocker, monkeypatch, tmpd
         return filename, None, None
 
     monkeypatch.setattr(geofabrik, "urlretrieve", mock_retrieve)
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan", cache_dir=str(tmpdir / "this-directory-does-not-exist")
     )
@@ -185,7 +185,7 @@ def test_download_osm_region_data_urlretrieve_no_file(
         return None, None, None  # filename retrieved is None
 
     monkeypatch.setattr(geofabrik, "urlretrieve", mock_retrieve)
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan", cache_dir=str(tmpdir / "this-directory-does-not-exist")
     )
@@ -195,7 +195,7 @@ def test_download_osm_region_data_urlretrieve_no_file(
 def test_download_osm_region_data_fail_urlcheck(
     mock_geofabrike_req, mocker, monkeypatch, tmpdir
 ):
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=False)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=False)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan", cache_dir=str(tmpdir / "this-directory-does-not-exist")
     )
@@ -205,7 +205,7 @@ def test_download_osm_region_data_fail_urlcheck(
 def test_download_osm_region_data_with_year_fail_urlcheck(
     mock_geofabrike_req, mocker, monkeypatch, tmpdir
 ):
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=False)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=False)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan",
         year="2001",
@@ -219,7 +219,7 @@ def test_download_osm_region_data(mock_geofabrike_req, mocker, monkeypatch, tmpd
         return filename, None, None
 
     monkeypatch.setattr(geofabrik, "urlretrieve", mock_retrieve)
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan", cache_dir=str(tmpdir / "this-directory-does-not-exist")
     )
@@ -248,7 +248,7 @@ def test_download_existing_osm_region_data_no_cache(
         "get_download_filepath",
         mocker.MagicMock(return_value=mock_region_zip_file),
     )
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan",
         cache_dir=str(tmpdir / "this-directory-does-not-exist"),
@@ -262,7 +262,7 @@ def test_download_existing_osm_region_data(mocker, tmpdir):
     mock_region_zip_file = mocker.MagicMock()
     mock_region_zip_file.exists = mocker.MagicMock(return_value=True)
     mocker.patch(
-        "geowrangler.datasets.geofabrik.get_download_filepath",
+        "geowrangler2.datasets.geofabrik.get_download_filepath",
         return_value=mock_region_zip_file,
     )
     filepath = geofabrik.download_osm_region_data(
@@ -278,7 +278,7 @@ def test_download_osm_region_data_with_year(
         return filename, None, None
 
     monkeypatch.setattr(geofabrik, "urlretrieve", mock_retrieve)
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     filepath = geofabrik.download_osm_region_data(
         "afghanistan",
         year="2021",
@@ -300,7 +300,7 @@ def test_load_pois(mock_geofabrike_req, mocker, monkeypatch, tmpdir):
         return filename, None, None
 
     mock_gdf = mocker.MagicMock()
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     monkeypatch.setattr(geofabrik, "urlretrieve", mock_retrieve)
     mock_gdf = mocker.MagicMock()
     mocker.patch("geopandas.read_file", return_value=mock_gdf)
@@ -333,7 +333,7 @@ def test_load_pois_with_year(mock_geofabrike_req, mocker, monkeypatch, tmpdir):
     mock_gdf = mocker.MagicMock()
     mocker.patch("geopandas.read_file", return_value=mock_gdf)
     monkeypatch.setattr(geofabrik, "urlretrieve", mock_retrieve)
-    mocker.patch("geowrangler.datasets.geofabrik.urlcheck", return_value=True)
+    mocker.patch("geowrangler2.datasets.geofabrik.urlcheck", return_value=True)
     osm_data_manager = geofabrik.OsmDataManager(
         cache_dir=str(tmpdir / "this-directory-does-not-exist")
     )

@@ -3,7 +3,7 @@ import numpy as np
 import pytest
 from shapely.geometry import multipolygon, point, polygon
 
-from geowrangler import validation
+from geowrangler2 import validation
 
 
 @pytest.fixture()

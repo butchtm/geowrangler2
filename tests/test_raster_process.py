@@ -9,7 +9,7 @@ import rasterio as rio
 import rasterio.coords as cds
 from shapely.geometry import Polygon
 
-import geowrangler.raster_process as rp
+import geowrangler2.raster_process as rp
 
 
 def make_circle_geometry(lat, lon, buffer, crs="epsg:4326"):

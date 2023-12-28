@@ -3,7 +3,7 @@ import pandas as pd
 import pytest
 from shapely.geometry import Point, Polygon
 
-from geowrangler.distance_zonal_stats import (
+from geowrangler2.distance_zonal_stats import (
     INTERNAL_DISTANCE_COL,
     build_agg_distance_dicts,
     create_distance_zonal_stats,

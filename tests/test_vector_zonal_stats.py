@@ -4,8 +4,8 @@ import pandas as pd
 import pytest
 from shapely.geometry import Point, Polygon
 
-import geowrangler.grids as gr
-from geowrangler.vector_zonal_stats import (
+import geowrangler2.grids as gr
+from geowrangler2.vector_zonal_stats import (
     GEO_INDEX_NAME,
     _aggregate_stats,
     _build_agg_args,
@@ -456,7 +456,7 @@ def test_prep_aoi_with_existing_aoi_index_cols(simple_aoi):
     e = exc_info.value
     assert (
         e.args[0]
-        == f"Invalid column name error: AOI column should not match Geowrangler index column {GEO_INDEX_NAME}"
+        == f"Invalid column name error: AOI column should not match geowrangler2 index column {GEO_INDEX_NAME}"
     )
 
 
@@ -470,7 +470,7 @@ def test_prep_aoi_with_existing_index_and_aoi_index_cols(simple_aoi):
     e = exc_info.value
     assert (
         e.args[0]
-        == f"Invalid column name error: AOI column should not match Geowrangler index column {GEO_INDEX_NAME}"
+        == f"Invalid column name error: AOI column should not match geowrangler2 index column {GEO_INDEX_NAME}"
     )
 
 

@@ -3,7 +3,7 @@ import pandas as pd
 import pytest
 from shapely.geometry import Point
 
-from geowrangler import dhs
+from geowrangler2 import dhs
 
 
 def test_load_column_config():

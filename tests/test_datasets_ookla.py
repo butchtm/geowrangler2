@@ -6,8 +6,8 @@ import pandas as pd
 import pytest
 import requests
 
-from geowrangler.datasets import ookla
-from geowrangler.datasets.ookla import (
+from geowrangler2.datasets import ookla
+from geowrangler2.datasets.ookla import (
     OoklaDataManager,
     OoklaFile,
     compute_datakey,
@@ -96,10 +96,10 @@ def test_download_ookla_year_data(mock_ookla_req, mocker, tmpdir):
         OoklaFile("fixed", "2019", "4"): "2019-10-01_performance_fixed_tiles.parquet",
     }
     mocker.patch(
-        "geowrangler.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
+        "geowrangler2.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
     )
     mocker.patch(
-        "geowrangler.datasets.ookla.download_ookla_parallel", mocker.MagicMock()
+        "geowrangler2.datasets.ookla.download_ookla_parallel", mocker.MagicMock()
     )
 
     filepath = download_ookla_year_data(
@@ -122,18 +122,18 @@ def test_ookla_datamanager_load_type_year_data(mock_ookla_req, tmpdir, mocker):
         OoklaFile("fixed", "2019", "4"): "2019-10-01_performance_fixed_tiles.parquet",
     }
     mocker.patch(
-        "geowrangler.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
+        "geowrangler2.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
     )
     aoi = mocker.MagicMock()
     aoi.total_bounds = np.array([1.0, 2.0, 3.0, 4.0])
     mocker.patch(
-        "geowrangler.datasets.ookla.download_ookla_year_data",
+        "geowrangler2.datasets.ookla.download_ookla_year_data",
         return_value=str(tmpdir / "this-directory-does-not-exist/ookla/fixed/2019"),
     )
     aoi_quadkeys_df = pd.DataFrame(dict(quadkey=["11111", "22222", "44444"]))
     mock_generator = mocker.MagicMock()
     mock_generator.generate_grid = mocker.MagicMock(return_value=aoi_quadkeys_df)
-    mocker.patch("geowrangler.grids.BingTileGridGenerator", return_value=mock_generator)
+    mocker.patch("geowrangler2.grids.BingTileGridGenerator", return_value=mock_generator)
     fixed_2019_files = [
         "2019-01-01_performance_fixed_tiles.parquet",
         "2019-04-01_performance_fixed_tiles.parquet",
@@ -165,19 +165,19 @@ def test_ookla_datamanager_load_type_year_data_return_geom(
         OoklaFile("fixed", "2019", "4"): "2019-10-01_performance_fixed_tiles.parquet",
     }
     mocker.patch(
-        "geowrangler.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
+        "geowrangler2.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
     )
 
     aoi = mocker.MagicMock()
     aoi.total_bounds = np.array([1.0, 2.0, 3.0, 4.0])
     mocker.patch(
-        "geowrangler.datasets.ookla.download_ookla_year_data",
+        "geowrangler2.datasets.ookla.download_ookla_year_data",
         return_value=str(tmpdir / "this-directory-does-not-exist/ookla/fixed/2019"),
     )
     aoi_quadkeys_df = pd.DataFrame(dict(quadkey=["11111", "22222", "44444"]))
     mock_generator = mocker.MagicMock()
     mock_generator.generate_grid = mocker.MagicMock(return_value=aoi_quadkeys_df)
-    mocker.patch("geowrangler.grids.BingTileGridGenerator", return_value=mock_generator)
+    mocker.patch("geowrangler2.grids.BingTileGridGenerator", return_value=mock_generator)
 
     fixed_2019_files = [
         "2019-01-01_performance_fixed_tiles.parquet",
@@ -360,14 +360,14 @@ def test_aggregate_ookla_features(mock_ookla_req, mock_ookla_data, mocker, tmpdi
         OoklaFile("fixed", "2019", "4"): "2019-10-01_performance_fixed_tiles.parquet",
     }
     mocker.patch(
-        "geowrangler.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
+        "geowrangler2.datasets.ookla.list_ookla_files", return_value=fixed_2019_files
     )
     aoi = mocker.MagicMock()
     aoi.total_bounds = np.array([1.0, 2.0, 3.0, 4.0])
     aoi_quadkeys_df = pd.DataFrame(dict(quadkey=["11111", "22222", "44444"]))
     mock_generator = mocker.MagicMock()
     mock_generator.generate_grid = mocker.MagicMock(return_value=aoi_quadkeys_df)
-    mocker.patch("geowrangler.grids.BingTileGridGenerator", return_value=mock_generator)
+    mocker.patch("geowrangler2.grids.BingTileGridGenerator", return_value=mock_generator)
     fixed_2019_files = [
         "2019-01-01_performance_fixed_tiles.parquet",
         "2019-04-01_performance_fixed_tiles.parquet",

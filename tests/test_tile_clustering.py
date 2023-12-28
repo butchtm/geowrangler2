@@ -1,6 +1,6 @@
 import geopandas as gpd
 import pytest
-import geowrangler.tile_clustering as tc
+import geowrangler2.tile_clustering as tc
 
 
 @pytest.fixture()

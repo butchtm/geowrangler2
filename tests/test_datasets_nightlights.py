@@ -6,7 +6,7 @@ import numpy as np
 
 import pytest
 
-import geowrangler.datasets.nightlights as ntl
+import geowrangler2.datasets.nightlights as ntl
 
 TEST_ACCESS_TOKEN_VALUE = "Test Access Token Value"
 
@@ -55,12 +55,12 @@ def test_get_clipped_raster(mocker, tmpdir):
         f.write("test zip file contents")
     mock_response = (filename, {}, None)
     mocker.patch(
-        "geowrangler.datasets.nightlights.urlretrieve", return_value=mock_response
+        "geowrangler2.datasets.nightlights.urlretrieve", return_value=mock_response
     )
     mocker.patch("gzip.open", return_value=mocker.MagicMock())
     mocker.patch("shutil.copyfileobj", mocker.MagicMock())
     mocker.patch(
-        "geowrangler.raster_process.query_window_by_polygon", mocker.MagicMock()
+        "geowrangler2.raster_process.query_window_by_polygon", mocker.MagicMock()
     )
 
     os.environ["EOG_ACCESS_TOKEN"] = TEST_ACCESS_TOKEN_VALUE
