@@ -3,6 +3,14 @@
 # %% auto 0
 __all__ = ['TileClustering']
 
+# %% ../nbs/08_tile_clustering.ipynb 5
+import pandas as pd
+from fastcore.all import patch
+from collections import deque
+from typing import List, Optional, Tuple
+
+
+
 # %% ../nbs/08_tile_clustering.ipynb 6
 class TileClustering:
     """
