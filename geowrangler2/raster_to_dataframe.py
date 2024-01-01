@@ -3,12 +3,12 @@
 # %% auto 0
 __all__ = ['read_bands']
 
-# %% ../nbs/11_raster_to_dataframe.ipynb 7
+# %% ../nbs/11_raster_to_dataframe.ipynb 6
 import pandas as pd
 import rasterio as rio
 import rasterio.mask
 
-# %% ../nbs/11_raster_to_dataframe.ipynb 8
+# %% ../nbs/11_raster_to_dataframe.ipynb 7
 def read_bands(image_list: [], mask: str):
     """
     Reads the bands for each image in the list and returns a dataframe where each band is one column with the image name as a suffix for column name.

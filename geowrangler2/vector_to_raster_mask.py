@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['GRID_ID', 'generate_mask']
 
-# %% ../nbs/10_vector_to_raster_mask.ipynb 8
+# %% ../nbs/10_vector_to_raster_mask.ipynb 7
 import json
 from typing import Any, Dict
 
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import rasterio as rio
 import rasterio.mask
 
-# %% ../nbs/10_vector_to_raster_mask.ipynb 10
+# %% ../nbs/10_vector_to_raster_mask.ipynb 9
 def _explode(gdf):
     """
     Explodes a geodataframe
@@ -37,7 +37,7 @@ def _explode(gdf):
 
     return gdf_out
 
-# %% ../nbs/10_vector_to_raster_mask.ipynb 11
+# %% ../nbs/10_vector_to_raster_mask.ipynb 10
 GRID_ID = 1
 
 
