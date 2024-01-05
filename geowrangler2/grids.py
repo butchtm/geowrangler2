@@ -23,7 +23,7 @@ from shapely.prepared import prep
 # %% ../nbs/00_grids.ipynb 5
 logger = logging.getLogger(__name__)
 
-# %% ../nbs/00_grids.ipynb 9
+# %% ../nbs/00_grids.ipynb 10
 class SquareGridBoundary:
     """Reusing Boundary. x_min, y_min, x_max, and y_max are in the the target crs"""
 
@@ -54,7 +54,7 @@ class SquareGridBoundary:
             yrange[y_mask],
         )
 
-# %% ../nbs/00_grids.ipynb 10
+# %% ../nbs/00_grids.ipynb 11
 class SquareGridGenerator:
     def __init__(
         self,
@@ -66,7 +66,7 @@ class SquareGridGenerator:
         self.grid_projection = grid_projection
         self.boundary = boundary
 
-# %% ../nbs/00_grids.ipynb 11
+# %% ../nbs/00_grids.ipynb 12
 @patch
 def create_cell(
     self: SquareGridGenerator,
@@ -83,7 +83,7 @@ def create_cell(
         ]
     )
 
-# %% ../nbs/00_grids.ipynb 12
+# %% ../nbs/00_grids.ipynb 13
 @patch
 def create_grid_for_polygon(self: SquareGridGenerator, boundary, geometry):
     x_idx_offset, xrange, y_idx_offset, yrange = boundary.get_range_subset(
@@ -102,7 +102,7 @@ def create_grid_for_polygon(self: SquareGridGenerator, boundary, geometry):
                 )
     return cells
 
-# %% ../nbs/00_grids.ipynb 13
+# %% ../nbs/00_grids.ipynb 14
 @patch
 def generate_grid(self: SquareGridGenerator, gdf: GeoDataFrame) -> GeoDataFrame:
     reprojected_gdf = gdf.to_crs(self.grid_projection)
@@ -134,7 +134,7 @@ def generate_grid(self: SquareGridGenerator, gdf: GeoDataFrame) -> GeoDataFrame:
             {"x": [], "y": [], "geometry": []}, geometry="geometry", crs=gdf.crs
         )
 
-# %% ../nbs/00_grids.ipynb 21
+# %% ../nbs/00_grids.ipynb 22
 class H3GridGenerator:
     def __init__(
         self,
@@ -144,7 +144,7 @@ class H3GridGenerator:
         self.resolution = resolution
         self.return_geometry = return_geometry
 
-# %% ../nbs/00_grids.ipynb 22
+# %% ../nbs/00_grids.ipynb 23
 @patch
 def get_hexes_for_polygon(self: H3GridGenerator, poly: Polygon):
     return h3.polyfill(
@@ -153,7 +153,7 @@ def get_hexes_for_polygon(self: H3GridGenerator, poly: Polygon):
         geo_json_conformant=True,
     )
 
-# %% ../nbs/00_grids.ipynb 23
+# %% ../nbs/00_grids.ipynb 24
 @patch
 def generate_grid(self: H3GridGenerator, gdf: GeoDataFrame) -> DataFrame:
     reprojected_gdf = gdf.to_crs("epsg:4326")  # h3 hexes are in epsg:4326 CRS
@@ -178,7 +178,7 @@ def generate_grid(self: H3GridGenerator, gdf: GeoDataFrame) -> DataFrame:
     )
     return h3_gdf.to_crs(gdf.crs)
 
-# %% ../nbs/00_grids.ipynb 24
+# %% ../nbs/00_grids.ipynb 25
 class BingTileGridGenerator:
     def __init__(
         self,
@@ -215,7 +215,7 @@ class BingTileGridGenerator:
             tiles = {qk: (geom, tile) for qk, geom, tile in tiles}
         return tiles
 
-# %% ../nbs/00_grids.ipynb 25
+# %% ../nbs/00_grids.ipynb 26
 @patch
 def get_all_tiles_for_polygon(self: BingTileGridGenerator, polygon: Polygon):
     """Get the interseting tiles with polygon for a zoom level. Polygon should be in EPSG:4326"""
@@ -226,7 +226,7 @@ def get_all_tiles_for_polygon(self: BingTileGridGenerator, polygon: Polygon):
     )
     return tiles
 
-# %% ../nbs/00_grids.ipynb 26
+# %% ../nbs/00_grids.ipynb 27
 @patch
 def generate_grid(self: BingTileGridGenerator, gdf: GeoDataFrame) -> DataFrame:
     reprojected_gdf = gdf.to_crs("epsg:4326")  # quadkeys hexes are in epsg:4326 CRS
@@ -261,7 +261,7 @@ def generate_grid(self: BingTileGridGenerator, gdf: GeoDataFrame) -> DataFrame:
 
     return tiles_gdf
 
-# %% ../nbs/00_grids.ipynb 27
+# %% ../nbs/00_grids.ipynb 28
 def get_intersect_partition(item):
     tiles_gdf, reprojected_gdf = item
     tiles_gdf.sindex
@@ -271,7 +271,7 @@ def get_intersect_partition(item):
     )
     return intersect_tiles_gdf
 
-# %% ../nbs/00_grids.ipynb 28
+# %% ../nbs/00_grids.ipynb 29
 def get_parallel_intersects(
     tiles_gdf, reprojected_gdf, n_workers=defaults.cpus, progress=True
 ):
@@ -291,7 +291,7 @@ def get_parallel_intersects(
     results.drop_duplicates(subset=["quadkey"], inplace=True)
     return results
 
-# %% ../nbs/00_grids.ipynb 29
+# %% ../nbs/00_grids.ipynb 30
 @patch
 def generate_grid_join(
     self: BingTileGridGenerator,

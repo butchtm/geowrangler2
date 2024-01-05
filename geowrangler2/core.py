@@ -3,6 +3,6 @@
 # %% auto 0
 __all__ = ['foo']
 
-# %% ../nbs/00_core.ipynb 4
+# %% ../nbs/00_core.ipynb 5
 def foo(bar='baz'): 
    return  bar
