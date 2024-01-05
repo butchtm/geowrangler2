@@ -1,2 +1,4 @@
 nbdev
 jupyterlab
+nbdime
+ipytest

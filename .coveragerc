@@ -1,0 +1,6 @@
+[run]
+source = geowrangler2/
+omit = venv/*,tests/*,geowrangler2/.ipynb_checkpoints/*, **/__init__.py, geowrangler2/_modidx.py
+
+[report]
+omit = venv/*,tests/*
