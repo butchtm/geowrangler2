@@ -2,6 +2,7 @@ website:
   sidebar:
     contents:
       - index.ipynb
+      - 00_core.ipynb
       - section: Tutorials
         contents:
           - tutorial.grids.ipynb
@@ -19,7 +20,6 @@ website:
         contents:
           - overview.poverty_mapping_demo.ipynb
           - overview.usecase_ookla.ipynb
-      - 00_core.ipynb
       - 00_grids.ipynb
       - 01_validation.ipynb
       - 02_vector_zonal_stats.ipynb
