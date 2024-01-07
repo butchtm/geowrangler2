@@ -3,7 +3,7 @@ project:
 
 format:
   html:
-    theme: cosmo
+    theme: slate
     css: styles.css
     toc: true
 
@@ -16,5 +16,15 @@ website:
     search: true
   sidebar:
     style: floating
+  page-footer: 
+    left: 
+      - text: Copyright 2023 onwards, Thinking Machines Data Science Inc.
+        href: https://thinkingmachin.es
+    center: |
+         [![](images/company_logo_sm.png){fig-alt="Thinking Machines Data Science Inc." width=65px}](https://thinkingmachin.es)
+    right: 
+      - icon: github
+        href: https://github.com/butchtm/geowrangler2
+     
 
 metadata-files: [nbdev.yml, sidebar.yml]
